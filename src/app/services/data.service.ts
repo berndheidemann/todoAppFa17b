@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Todo} from '../models/Todo';
 import {Category} from '../models/Category';
+import {MessageBoxService} from './message-box.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class DataService {
   todos: Todo[] = [];
   categories: Category[] = [];
 
-  constructor() {
 
+  constructor(private messageBoxservice: MessageBoxService) {
     this.categories.push(new Category(1, 'Arbeit'));
     this.categories.push(new Category(2, 'Privat'));
     this.categories.push(new Category(3, 'Verein'));
@@ -25,9 +26,13 @@ export class DataService {
 
   save(todo: Todo) {
     this.todos.push(todo);
+    this.messageBoxservice.showMessageBox('Todo erfolgreich gespeichert');
   }
 
   delete(t: Todo) {
     this.todos = this.todos.filter(todo => todo !== t);
+    this.messageBoxservice.showMessageBox('erfolgreich gelöscht');
   }
+
+
 }

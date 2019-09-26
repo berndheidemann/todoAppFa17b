@@ -6,6 +6,7 @@ import {ListComponent} from './components/list/list.component';
 import {FormComponent} from './components/form/form.component';
 import {FormsModule} from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MessageBoxComponent } from './components/message-box/message-box.component';
 
 const appRoutes: Routes = [
   {path: 'list', component: ListComponent},
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     AppComponent,
     ListComponent,
     FormComponent,
-    NavbarComponent
+    NavbarComponent,
+    MessageBoxComponent
   ],
   imports: [
     BrowserModule,
