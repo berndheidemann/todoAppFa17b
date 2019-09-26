@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {MessageBoxService} from '../../services/message-box.service';
+import {MessageBoxType} from '../../models/MessageBoxTypes';
 
 @Component({
   selector: 'app-message-box',
@@ -9,16 +10,19 @@ import {MessageBoxService} from '../../services/message-box.service';
 })
 export class MessageBoxComponent implements OnInit {
 
-
   constructor(private messageBoxservice: MessageBoxService) {
   }
 
   get visible(): boolean {
-    return this.messageBoxservice.messageBoxVisible;
+    return this.messageBoxservice.visible;
   }
 
   get text(): string {
-    return this.messageBoxservice.messageBoxMessage;
+    return this.messageBoxservice.message;
+  }
+
+  get type(): string {
+    return this.messageBoxservice.type;
   }
 
   ngOnInit() {

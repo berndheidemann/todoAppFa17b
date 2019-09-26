@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Todo} from '../models/Todo';
 import {Category} from '../models/Category';
 import {MessageBoxService} from './message-box.service';
+import {MessageBoxType} from '../models/MessageBoxTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,12 @@ export class DataService {
 
   save(todo: Todo) {
     this.todos.push(todo);
-    this.messageBoxservice.showMessageBox('Todo erfolgreich gespeichert');
+    this.messageBoxservice.showMessageBox('Todo erfolgreich gespeichert', MessageBoxType.SUCCESS);
   }
 
   delete(t: Todo) {
     this.todos = this.todos.filter(todo => todo !== t);
-    this.messageBoxservice.showMessageBox('erfolgreich gelöscht');
+    this.messageBoxservice.showMessageBox('erfolgreich gelöscht', MessageBoxType.DANGER);
   }
 
 

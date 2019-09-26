@@ -1,23 +1,28 @@
 import {Injectable} from '@angular/core';
+import {MessageBoxType} from '../models/MessageBoxTypes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageBoxService {
-  messageBoxVisible: boolean;
-  messageBoxMessage: string;
+  visible: boolean;
+  message: string;
+  type: MessageBoxType;
+
 
   constructor() {
-    this.messageBoxVisible = false;
+    this.visible = false;
 
   }
 
-  showMessageBox(message: string): void {
-    this.messageBoxVisible = true;
-    this.messageBoxMessage = message;
+  showMessageBox(message: string, type: MessageBoxType): void {
+    this.visible = true;
+    this.message = message;
+    this.type = type;
     setTimeout(() => {
-      this.messageBoxMessage = '';
-      this.messageBoxVisible = false;
+      this.message = '';
+      this.visible = false;
+      this.type = null;
     }, 4000);
   }
 }
