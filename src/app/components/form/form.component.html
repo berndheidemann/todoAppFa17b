@@ -1,0 +1,45 @@
+<h3>Neues Todo anlegen</h3>
+
+<form #form>
+  <div class="form-group row">
+    <label for="text" class="col-4 col-form-label">ID</label>
+    <div class="col-8">
+      <div class="input-group">
+        <input [(ngModel)]="todo.id" id="text" name="id" #id="ngModel" placeholder="Nummer des Todo" type="text"
+               class="form-control col-md-12" required minlength="2">
+        <div class="alert alert-danger col-md-12" *ngIf="hasError(id)">
+          Fehler
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="text1" class="col-4 col-form-label">Bezeichnung</label>
+    <div class="col-8">
+      <input [(ngModel)]="todo.label" required minlength="5" #label="ngModel" id="text1" name="text1"
+             placeholder="Was möchten Sie tun?"
+             type="text"
+             class="form-control"
+             [class.error]="hasError(label)">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="select" class="col-4 col-form-label">Kategorie</label>
+    <div class="col-8">
+      <select required #cat="ngModel" id="select" [(ngModel)]="todo.category" name="select" class="custom-select"
+              [class.error]=" hasError(cat)">
+        <option *ngFor="let cat of categories" [ngValue]="cat">
+          {{cat.label}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button (click)="form.checkValidity()?save():1" name="submit" type="submit" class="btn btn-primary">Submit
+      </button>
+    </div>
+  </div>
+
+</form>
+<input type="date">
