@@ -17,6 +17,9 @@
       {{t.label}} </td>
     <td>{{t.category.label}}</td>
     <td>
+      <app-importance-chooser [todo]="t"></app-importance-chooser>
+    </td>
+    <td>
       <button (click)="delete(t)">
         <i class="material-icons">
           delete

@@ -1,0 +1,13 @@
+<i class="material-icons" (click)="select(importance.critical)"
+   [class.selected]="todo.importance===importance.critical">
+  priority_high
+</i>
+<i class="material-icons" (click)="select(importance.normal)"
+   [class.selected]=" todo.importance===importance.normal">
+  grade
+</i>
+<i class="material-icons" (click)="select(importance.minor)"
+   [class.selected]="todo.importance===importance.minor">
+  trending_flat
+</i>
+

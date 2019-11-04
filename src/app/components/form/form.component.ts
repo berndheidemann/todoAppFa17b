@@ -3,6 +3,7 @@ import {Todo} from '../../models/Todo';
 import {DataService} from '../../services/data.service';
 import {Category} from '../../models/Category';
 import {Router} from '@angular/router';
+import {Importance} from '../../models/Importance';
 
 @Component({
   selector: 'app-form',
@@ -32,5 +33,9 @@ export class FormComponent implements OnInit {
 
   hasError(field: any) {
     return field.invalid && (field.dirty || field.touched);
+  }
+
+  importanceChoosed(importance: Importance) {
+    this.todo.importance = importance;
   }
 }

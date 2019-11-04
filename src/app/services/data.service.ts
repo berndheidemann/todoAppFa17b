@@ -3,6 +3,7 @@ import {Todo} from '../models/Todo';
 import {Category} from '../models/Category';
 import {MessageBoxService} from './message-box.service';
 import {MessageBoxType} from '../models/MessageBoxTypes';
+import {Importance} from '../models/Importance';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class DataService {
     this.categories.push(new Category(2, 'Privat'));
     this.categories.push(new Category(3, 'Verein'));
 
-    this.todos.push(new Todo(1, 'Foo', this.categories[0]));
-    this.todos.push(new Todo(2, 'FooBar', this.categories[0]));
-    this.todos.push(new Todo(3, 'Bar', this.categories[2]));
+    this.todos.push(new Todo(1, 'Rasen mähen', this.categories[0], Importance.minor));
+    this.todos.push(new Todo(2, 'Bier kaufen', this.categories[1], Importance.normal));
+    this.todos.push(new Todo(3, 'Bier trinken', this.categories[2], Importance.critical));
 
 
   }
