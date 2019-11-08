@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Todo} from '../../models/Todo';
 import {DataService} from '../../services/data.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {from, Observable} from 'rxjs';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,12 @@ export class ListComponent implements OnInit {
   }
 
   get todos(): Observable<Todo[]> {
-    return this.dataService.todos;
+    return this.dataService.todos.pipe(
+      filter(t => {
+        return t.label === 'Foo';
+      }));
+
+    // return this.dataService.todos;
   }
 
   toggle(t: Todo) {

@@ -8,7 +8,7 @@
   <th></th>
   </thead>
   <tbody>
-  <tr *ngFor="let t of todos | async" [class.done]="t.done">
+  <tr *ngFor="let t of todos | async " [class.done]="t.done">
     <td style="width:50px;" (click)="toggle(t)">
       <i class="material-icons" *ngIf="t.done">
         done
