@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Todo} from '../../models/Todo';
 import {DataService} from '../../services/data.service';
+import {AngularFirestoreCollection} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -17,12 +19,12 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   }
 
-  get todos(): Todo[] {
+  get todos(): Observable<Todo[]> {
     return this.dataService.todos;
   }
 
   toggle(t: Todo) {
-    t.done = !t.done;
+    this.dataService.toggle(t);
   }
 
   delete(t: Todo) {
