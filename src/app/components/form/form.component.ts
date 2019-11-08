@@ -4,6 +4,7 @@ import {DataService} from '../../services/data.service';
 import {Category} from '../../models/Category';
 import {Router} from '@angular/router';
 import {Importance} from '../../models/Importance';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -18,11 +19,12 @@ export class FormComponent implements OnInit {
     this.todo = new Todo();
   }
 
-  get categories(): Category[] {
+  get categories(): Observable<Category[]> {
     return this.dataService.categories;
   }
 
   ngOnInit() {
+
   }
 
   save() {
