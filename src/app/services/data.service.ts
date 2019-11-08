@@ -18,15 +18,7 @@ export class DataService {
   categories: Observable<Category[]>;
 
   constructor(private db: AngularFirestore, private messageBoxservice: MessageBoxService) {
-    this.todos = db.collection<Todo>('/todos').snapshotChanges().pipe(
-      map(data => {
-        return data.map(item => {
-          const todo = item.payload.doc.data() as Todo;
-          const id = item.payload.doc.id;
-          return {id, ...todo};
-        });
-      })
-    );
+    this.todos = db.collection<Todo>('/todos').valueChanges({idField: 'id'});
     this.categories = db.collection<Category>('/categories').valueChanges();
   }
 
@@ -56,6 +48,7 @@ export class DataService {
   }
 
   toggle(t: Todo) {
+    console.log(JSON.stringify(t));
     t.done = !t.done;
     this.db.collection('todos').doc(t.id).set(t).then(() => {
     }).catch((e) => {
