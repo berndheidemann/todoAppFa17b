@@ -7,19 +7,29 @@ import {Importance} from '../models/Importance';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-
+  // sa
   todos: Observable<Todo[]>;
   categories: Observable<Category[]>;
 
-  constructor(private db: AngularFirestore, private messageBoxservice: MessageBoxService) {
+  constructor(private db: AngularFirestore,
+              private messageBoxservice: MessageBoxService,
+              private afAuth: AngularFireAuth) {
     this.todos = db.collection<Todo>('/todos').valueChanges({idField: 'id'});
     this.categories = db.collection<Category>('/categories').valueChanges();
+    this.afAuth
+      .auth
+      .signInWithEmailAndPassword('a@b.de', '123456')
+      .then(r => console.log('logged in'))
+      .catch(e => {
+        console.log(e.code);
+      });
   }
 
   async save(todo: Todo) {
